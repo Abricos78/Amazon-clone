@@ -1,7 +1,8 @@
 import React from 'react'
 import style from './Home.module.css'
 import background from '../../assets/img/396ae9efea008a465e00f9e757cc1baf.jpg'
-import Product from './Product/Product'
+import ProductContainer from './Product/Product'
+
 
 function Home() {
     return (
@@ -10,21 +11,21 @@ function Home() {
                 <img className={style.image} src={background}/>
 
                 <div className={style.row}>
-                    <Product 
+                    <ProductContainer
                     id="100" 
                     title="The best book of JS" 
                     price="100" 
                     image="https://cv9.litres.ru/pub/c/pdf-kniga/cover_max1500/24499998-devid-flenagan-javascript-podrobnoe-rukovodstvo-6-e-izdanie-24499998.jpg" 
                     rating={5}
                     />
-                    <Product 
+                    <ProductContainer
                         id="101" 
                         title="КОМБАЙН KENWOOD FDM 301SS" 
                         price="200" 
                         image="https://www.imperiatechno.ru/pictures/product/popup/445040_0.jpg" 
                         rating={4}
                     />
-                    <Product 
+                    <ProductContainer
                         id="106" 
                         title="Programming JavaScript Applications" 
                         price="95" 
@@ -34,21 +35,21 @@ function Home() {
                 </div>
 
                 <div className={style.row}>
-                    <Product 
+                    <ProductContainer
                         id="102" 
                         title="Умные часы с GPS и пульсометром A16 D100" 
                         price="300" 
                         image="https://images.satu.kz/131792245_w640_h640_smart-chasy.jpg" 
                         rating={3}
                     />
-                    <Product 
+                    <ProductContainer
                         id="103" 
                         title="Яндекс.Станция (серебристая)" 
                         price="210" 
                         image="https://multivarka.pro/upload/resize_cache/iblock/0ba/750_750_1/ya-station-back-white.jpg" 
                         rating={5}
                     />
-                    <Product 
+                    <ProductContainer
                         id="104" 
                         title="Apple iPad Air 2 128Gb Wi-Fi серый" 
                         price="470" 
@@ -58,7 +59,7 @@ function Home() {
                 </div>
 
                 <div className={style.row}>
-                    <Product 
+                    <ProductContainer
                         id="105" 
                         title="LED телевизор Sony KD55XE7096BR2 55'' (черно-серебристый)" 
                         price="1150" 

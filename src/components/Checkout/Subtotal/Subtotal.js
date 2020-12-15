@@ -1,15 +1,19 @@
 import React from 'react'
 import style from './Subtotal.module.css'
 import CurrencyFormat from 'react-currency-format'
+import { connect } from 'react-redux'
 
-function Subtotal() {
+function Subtotal({allProducts, priceProducts}) {
+
+    let getBasketTotal = priceProducts.reduce((accamulator, currentValue) => accamulator + currentValue, 0)
+
     return (
         <div className={style.subtotal}>
             <CurrencyFormat 
                 renderText={value => (
                     <>
                         <p>
-                            Subtotal (0 items): <strong>0</strong>
+                            Subtotal ({allProducts} items): <strong>{value}</strong>
                         </p>
                         <small className={style.gift}>
                             <input type="checkbox"/> This order contains a gift
@@ -17,7 +21,7 @@ function Subtotal() {
                     </>
                 )}
                 decimaScale={2}
-                value={0}
+                value={getBasketTotal}
                 displayType={"text"}
                 thousandSeparator={true}
                 prefix={"$"}
@@ -28,4 +32,13 @@ function Subtotal() {
     )
 }
 
-export default Subtotal
+let mapStateToProps = state => {
+    return {
+        allProducts: state.homePage.basket.length,
+        priceProducts: state.homePage.basket.map(product => +product.price)
+    }
+}
+
+let SubtotalContainer = connect(mapStateToProps, null)(Subtotal)
+
+export default SubtotalContainer

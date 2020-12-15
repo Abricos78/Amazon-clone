@@ -4,8 +4,10 @@ import logo from '../../assets/img/amazon-logo.png'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function Header() {
+
+function Header({allProducts, ...props}) {
     return (
         <div className={style.header}>
 
@@ -20,10 +22,13 @@ function Header() {
             </div>
             <div className={style.nav}>
 
-                <div className={style.option}>
-                    <span className={style.lineOne}>Hello</span>
-                    <span className={style.lineTwo}>Sign In</span>
-                </div>
+                <Link to="/login">
+                    <div className={style.option}>
+                        <span className={style.lineOne}>Hello</span>
+                        <span className={style.lineTwo}>Sign In</span>
+                    </div>
+                </Link>
+                
 
                 <div className={style.option}>
                     <span className={style.lineOne}>Returns</span>
@@ -38,14 +43,21 @@ function Header() {
                 <Link to="/checkout">
                     <div className={style.optionBasket}>
                         <ShoppingBasketIcon className={style.basket}/>
-                        <span className={style.lineTwo + ' ' + style.basketCount}>0</span>
+                        <span className={style.lineTwo + ' ' + style.basketCount}>{allProducts}</span>
                     </div>
                 </Link>
-
                 
             </div>
         </div>
     )
 }
 
-export default Header
+let mapStateToProps = state => {
+    return {
+        allProducts: state.homePage.basket.length
+    }
+}
+
+let HeaderContainer = connect(mapStateToProps)(Header)
+
+export default HeaderContainer
