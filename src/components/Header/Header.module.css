@@ -61,6 +61,10 @@
     justify-content: space-evenly;
 }
 
+.nav a {
+    text-decoration: none;
+}
+
 .option {
     display: flex;
     flex-direction: column;

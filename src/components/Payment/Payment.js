@@ -1,3 +1,4 @@
+import { Link } from '@material-ui/core'
 import React from 'react'
 import { connect } from 'react-redux'
 import CheckoutProductContainer from '../Checkout/CheckoutProduct/CheckoutProduct'
@@ -21,36 +22,40 @@ function Payment({basket, user}) {
         <div className={style.payment}>
             <div className={style.container}>
 
-            <div className={style.section}>
-                <div className={style.title}>
-                    <h3>Delivery Address</h3>
+                <h1>
+                    Checkout (<Link to='/checkout'>{`${basket.length} items`}</Link>)
+                </h1>
+
+                <div className={style.section}>
+                    <div className={style.title}>
+                        <h3>Delivery Address</h3>
+                    </div>
+                    <div className={style.address}>
+                        <p>{user ? user.email : ''}</p>
+                        <p>123 React Lane</p>
+                        <p>Los Angeles, CA</p>
+                    </div>
                 </div>
-                <div className={style.address}>
-                    <p>{user ? user.email : ''}</p>
-                    <p>123 React Lane</p>
-                    <p>Los Angeles, CA</p>
-                </div>
-            </div>
             
 
-            <div className={style.section}>
-                <div className={style.title}>
-                    <h3>Review items and delivery</h3>
+                <div className={style.section}>
+                    <div className={style.title}>
+                        <h3>Review items and delivery</h3>
+                    </div>
+                    <div className={style.items}>
+                        {items}
+                    </div>
                 </div>
-                <div className={style.items}>
-                    {items}
-                </div>
-            </div>
 
-            <div className={style.section}>
-                <div className={style.title}>
-                    <h3>Payment Method</h3>
-                </div>
-                <div className={style.details}>
+                <div className={style.section}>
+                    <div className={style.title}>
+                        <h3>Payment Method</h3>
+                    </div>
+                    <div className={style.details}>
+                        
+                    </div>
 
                 </div>
-            </div>
-
             </div>
         </div>
     )
