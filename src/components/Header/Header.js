@@ -5,14 +5,22 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { auth } from '../../firebase';
 
 
-function Header({allProducts, ...props}) {
+function Header({allProducts, user,  ...props}) {
+
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut()
+        }
+    }
+
     return (
         <div className={style.header}>
 
             <Link to="/">
-                <img className={style.logo} src={logo}/>
+                <img className={style.logo} src={logo} alt="logo"/>
             </Link>
 
             
@@ -21,11 +29,11 @@ function Header({allProducts, ...props}) {
                 <SearchIcon className={style.searchIcon}/>
             </div>
             <div className={style.nav}>
-
-                <Link to="/login">
-                    <div className={style.option}>
-                        <span className={style.lineOne}>Hello</span>
-                        <span className={style.lineTwo}>Sign In</span>
+                
+                <Link to={!user && "/login"}>
+                    <div onClick={handleAuthentication} className={style.option}>
+                        <span className={style.lineOne}>{user ? `Hello, ${user.email}` : 'Hello Guest'}</span>
+                        <span className={style.lineTwo}>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
                 
@@ -54,7 +62,8 @@ function Header({allProducts, ...props}) {
 
 let mapStateToProps = state => {
     return {
-        allProducts: state.homePage.basket.length
+        allProducts: state.homePage.basket.length,
+        user: state.app.user
     }
 }
 

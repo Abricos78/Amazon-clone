@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import CheckoutProductContainer from './CheckoutProduct/CheckoutProduct';
 
 
-function Checkout({basket}) {
+function Checkout({basket, user}) {
     return (
         <div className={style.checkout}>
             <div className={style.left}>
-                <img className={style.ad} src="https://content26.com/wp-content/uploads/AMS-Graphic-1_890x400.png"/>
+                <img className={style.ad} src="https://content26.com/wp-content/uploads/AMS-Graphic-1_890x400.png" alt="ad"/>
 
                 <div >
+                    <h3>{user ? `Hello, ${user.email}` : ''}</h3>
                     <h2 className={style.title}>Your Shopping Basket</h2>
                     {basket.map(item => (
                         <CheckoutProductContainer 
@@ -35,7 +36,8 @@ function Checkout({basket}) {
 
 let mapStateToProps = state => {
     return {
-        basket: state.homePage.basket
+        basket: state.homePage.basket,
+        user: state.app.user
     }
 }
 

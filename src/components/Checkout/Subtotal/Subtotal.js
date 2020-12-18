@@ -2,10 +2,17 @@ import React from 'react'
 import style from './Subtotal.module.css'
 import CurrencyFormat from 'react-currency-format'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 function Subtotal({allProducts, priceProducts}) {
+    
+    let getBasketTotal = priceProducts.reduce((accamulator, currentValue) => accamulator + currentValue, 0),
+        history = useHistory()
 
-    let getBasketTotal = priceProducts.reduce((accamulator, currentValue) => accamulator + currentValue, 0)
+    let paymentPage = (e) => {
+        e.preventDefault()
+        history.push('/payment')
+    }
 
     return (
         <div className={style.subtotal}>
@@ -27,7 +34,7 @@ function Subtotal({allProducts, priceProducts}) {
                 prefix={"$"}
             />
 
-            <button>Proceed to Checkout</button>
+            <button onClick={paymentPage}>Proceed to Checkout</button>
         </div>
     )
 }

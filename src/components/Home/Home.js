@@ -8,7 +8,7 @@ function Home() {
     return (
         <div className={style.home}>
             <div className={style.container}>
-                <img className={style.image} src={background}/>
+                <img className={style.image} src={background} alt="background"/>
 
                 <div className={style.row}>
                     <ProductContainer
