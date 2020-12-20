@@ -8,6 +8,12 @@ import LoginContainer from './components/Login/Login';
 import PaymentContainer from './components/Payment/Payment';
 import { auth } from './firebase';
 import { setUser } from './redux/appReducer';
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+
+const promise = loadStripe(
+	'pk_test_51HzszoJ1MyPMFpzy9OwznnmlpaWkJxHkjbR5Xn6x4PiqaVwYtQqwIJ12hQjnCbPjvouoEyqrfoINcTfOtvT3q25G00OJOouDuz'
+);
 
 function App({stateUser}) {
 
@@ -33,7 +39,10 @@ function App({stateUser}) {
 						<CheckoutContainer />
 					</Route>
 					<Route path="/payment">
-						<PaymentContainer />
+						<HeaderContainer />
+						<Elements stripe={promise}>
+							<PaymentContainer />
+						</Elements>
 					</Route>
 					<Route path="/">
 						<HeaderContainer />

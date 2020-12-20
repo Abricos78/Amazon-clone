@@ -6,6 +6,7 @@ import CheckoutProductContainer from './CheckoutProduct/CheckoutProduct';
 
 
 function Checkout({basket, user}) {
+
     return (
         <div className={style.checkout}>
             <div className={style.left}>

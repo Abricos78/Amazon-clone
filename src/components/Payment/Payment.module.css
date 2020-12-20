@@ -30,6 +30,6 @@
     flex: .2;
 }
 
-.address, .items {
+.address, .items, .details {
     flex: .8;
 }
